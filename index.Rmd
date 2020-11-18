@@ -1,0 +1,51 @@
+---
+title: "Plotly Example"
+author: "Andrea Cárdenas"
+date: "17/11/2020"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+```
+
+## Plotting Fertility from swiss Dataset
+
+```{r echo = FALSE, message = FALSE, warnings = FALSE}
+suppressWarnings(suppressMessages(library(plotly)))
+
+plot_ly(swiss, x = ~Education, y = ~Fertility, type = "scatter", 
+        mode = "markers", color = ~Agriculture, 
+        text = ~paste('Fertility:', Fertility, '<br>Education:', Education, '<br>Agriculture:', Agriculture, '<br>Examination:', Examination), 
+        marker = list(sizemode = 'diameter', size = ~Examination)) %>%
+    layout(title = 'Swiss Fertility and Socioeconomic Indicators (1888) Data',
+           plot_bgcolor = 'rgb(243, 243, 243)',
+           paper_bgcolor = 'rgb(243, 243, 243)',
+           xaxis = list(title = 'Education (% beyond primary school)',
+                        gridcolor = 'rgb(255, 255, 255)'),
+           yaxis = list(title = 'Fertility',
+                        gridcolor = 'rgb(255, 255, 255)'))
+```
+
+## Code used for Plot
+
+```{r echo = TRUE, message = FALSE, warnings = FALSE, eval = FALSE}
+suppressWarnings(suppressMessages(library(plotly)))
+
+plot_ly(swiss, x = ~Education, y = ~Fertility, type = "scatter", 
+        mode = "markers", color = ~Agriculture, 
+        text = ~paste('Fertility:', Fertility, '<br>Education:', 
+                      Education, '<br>Agriculture:', Agriculture, 
+                      '<br>Examination:', Examination), 
+        marker = list(sizemode = 'diameter', 
+                      size = ~Examination)) %>%
+layout(title = 'Swiss Fertility and Socioeconomic 
+       Indicators (1888) Data',
+       plot_bgcolor = 'rgb(243, 243, 243)',
+       paper_bgcolor = 'rgb(243, 243, 243)',
+       xaxis = list(title = 'Education (% beyond primary school)',
+                    gridcolor = 'rgb(255, 255, 255)'),
+       yaxis = list(title = 'Fertility',
+                    gridcolor = 'rgb(255, 255, 255)'))
+```
